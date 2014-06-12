@@ -6,6 +6,10 @@ opts_chunk$set(cache=FALSE)
 
 To run this markdown document; the lattice, grid and gridExtra libraries are necessaries
 
+The document uses R option scipen to adjust the scientific notation:
+```{r}
+options(scipen=8)
+```
 
 
 ## Loading and preprocessing the data

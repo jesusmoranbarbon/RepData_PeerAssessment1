@@ -4,6 +4,11 @@
 
 To run this markdown document; the lattice, grid and gridExtra libraries are necessaries
 
+The document uses R option scipen to adjust the scientific notation:
+
+```r
+options(scipen=8)
+```
 
 
 ## Loading and preprocessing the data
@@ -25,7 +30,7 @@ library(lattice)
 histogram(steps_per_day$steps, main="Steps in a day", xlab="Steps", type="count", ylab="Frecuency")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
 Other plot that represents the medium steps per day:
 
@@ -34,7 +39,7 @@ Other plot that represents the medium steps per day:
 barchart(steps ~ date, data=steps_per_day, main="Steps by day", xlab="Day", scales=list(x=list(rot=90)))
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
 
 The mean and the median of steps per day is obtained by the next code
 
@@ -42,7 +47,7 @@ The mean and the median of steps per day is obtained by the next code
 mean_steps_per_day <- mean(steps_per_day$steps)
 median_steps_per_day <- median(steps_per_day$steps)
 ```
-**Mean of steps per day:** 1.0766 &times; 10<sup>4</sup>  
+**Mean of steps per day:** 10766.1887  
 **Median of steps per day:** 10765
 
 
@@ -55,7 +60,7 @@ mean_steps_per_interval <- aggregate(steps ~ interval, activity, FUN=function(x)
 xyplot(steps ~ interval, data=mean_steps_per_interval, type="l")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 Now, the 5-min interval with the maximum averaged steps is obtained by the next code:
 
@@ -102,7 +107,7 @@ library(gridExtra)
 grid.arrange(plot_1,plot_2, ncol=2)
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
 
 The results are different, but similar. Now its time to calculate the mean and the median of stepts per day after the replacement of the missing values:
 
@@ -111,8 +116,8 @@ mean_steps_per_day_fill_na <- mean(steps_per_day_fill_na$steps)
 median_steps_per_day_fill_na <- median(steps_per_day_fill_na$steps)
 ```
 
-The **mean** of steps per day after the replacement of missing values is 1.0766 &times; 10<sup>4</sup>  
-The **median** of stepts per day after the replacement of missing values is 1.0766 &times; 10<sup>4</sup>
+The **mean** of steps per day after the replacement of missing values is 10766.1887  
+The **median** of stepts per day after the replacement of missing values is 10765.5943
 
 This values are quite similar to the results without missing values. In mean and median, the **impact** of replacement missing values is practically zero.
 
@@ -156,6 +161,6 @@ mean_steps_per_interval_and_day <- aggregate(steps ~ interval + day, activity_fi
 xyplot(steps ~ interval | day, data=mean_steps_per_interval_and_day, layout = c(1, 2), xlab="Intervals", ylab="Steps", type = "l")
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
 In the steps in the 5-min interval **there are differences** between weekends and weekdays. In the weekdays there are a few intervals when the steps are concentrated. But in weekends, the steps are concentrated in more intervals.
